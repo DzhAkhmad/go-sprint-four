@@ -54,20 +54,20 @@ func meanSpeed(action int, duration float64) float64 {
 func ShowTrainingInfo(action int, trainingType string, duration, weight, height float64, lengthPool, countPool int) string {
     switch trainingType{
 	case TrainingRunning:
-		distance := distance(action)
+		totalDistance := distance(action)
 		avgSpeed := meanSpeed(action, duration)
 		calories := RunningSpentCalories(action, weight, duration)
-		return fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", trainingType, duration, distance, avgSpeed, calories)
+		return fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", trainingType, duration, totalDistance, avgSpeed, calories)
 	case TrainingWalking:
-		distance := distance(action)
+		totalDistance := distance(action)
 		avgSpeed := meanSpeed(action, duration)
 		calories := WalkingSpentCalories(action, duration, weight, height)
-		return fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", trainingType, duration, distance, avgSpeed, calories)
+		return fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", trainingType, duration, totalDistance, avgSpeed, calories)
 	case TrainingSwimming:
-		distance := distance(action)
+		totalDistance := distance(action)
 		avgSpeed := swimmingMeanSpeed(lengthPool, countPool, duration)
 		calories := SwimmingSpentCalories(lengthPool, countPool, duration, weight)
-		return fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", trainingType, duration, distance, avgSpeed, calories)
+		return fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", trainingType, duration, totalDistance, avgSpeed, calories)
 	default:
 		return "неизвестный тип тренировки"
 	}
